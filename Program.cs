@@ -38,7 +38,7 @@ namespace Part_6___Looping_Problems
                 }
                 else if (menuOption == "Q"||menuOption=="q")
                 {
-
+                    Environment.Exit(0);
                 }
                 else
                 {
@@ -48,7 +48,55 @@ namespace Part_6___Looping_Problems
         }
         public static void Prompter()
         {
-
+            double num1=0, num2=0, inputNum=0;
+            bool valid=false;
+            Console.Write("Enter a Number: ");
+            while (!valid)
+            {
+                if (double.TryParse(Console.ReadLine(), out num1))
+                {
+                    valid = true;
+                }
+                else
+                {
+                    Console.WriteLine("That is not a valid number, try again!");
+                }
+            }
+            valid = false;
+            Console.Write("Enter a Second Number: ");
+            while (!valid)
+            {
+                if (double.TryParse(Console.ReadLine(), out num2))
+                {
+                    valid = true;
+                }
+                else
+                {
+                    Console.WriteLine("That is not a valid number, try again!");
+                }
+            }
+            Console.WriteLine($"Please enter a value between {Math.Min(num1, num2)} and {Math.Max(num1, num2)}");
+            do
+            {
+                valid = false;
+                while (!valid)
+                {
+                    if (double.TryParse(Console.ReadLine(), out inputNum))
+                    {
+                        valid = true;
+                        if (inputNum < Math.Min(num1, num2) || inputNum > Math.Max(num1, num2))
+                        {
+                            Console.WriteLine("That is not a valid number, try again!");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is not a valid number, try again!");
+                    }
+                }
+            } while (inputNum < Math.Min(num1, num2) || inputNum > Math.Max(num1, num2));
+            Console.WriteLine($"Good Job! {inputNum} is between {Math.Min(num1, num2)} and {Math.Max(num1, num2)}!");
+            System.Threading.Thread.Sleep(3000);
         }
     }
 }
